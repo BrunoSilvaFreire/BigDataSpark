@@ -1,0 +1,26 @@
+package me.ddevil.kotlinx
+
+
+operator fun <E> List<E>.component6(): E{
+    return this[6]
+}
+
+operator fun <E> List<E>.component7(): E{
+    return this[7]
+}
+
+operator fun <E> List<E>.component8(): E{
+    return this[8]
+}
+
+operator fun <E> List<E>.component9(): E{
+    return this[9]
+}
+
+operator fun <E> List<E>.component10(): E{
+    return this[10]
+}
+
+operator fun <E> List<E>.component11(): E{
+    return this[11]
+}
