@@ -1,31 +1,27 @@
 package me.ddevil.spark
 
-import me.ddevil.spark.airports.AirportsAvg
-import me.ddevil.spark.airports.AirportsLat
-import me.ddevil.spark.airports.AirportsUSA
 import me.ddevil.spark.tde.*
 import org.apache.log4j.Level
 import org.apache.log4j.Logger
 import org.apache.spark.SparkConf
 import org.apache.spark.api.java.JavaSparkContext
+import org.apache.spark.sql.SQLContext
 import kotlin.system.measureTimeMillis
 
 interface Project {
     val name: String
-    operator fun invoke(sparkContext: JavaSparkContext)
+    operator fun invoke(context: SQLContext)
 }
 
 val projects = listOf(
-    AirportsUSA,
-    AirportsLat,
-    AirportsAvg,
     Query1,
     Query2,
     Query3,
     Query4,
     Query5,
     Query6,
-    Query7
+    Query7,
+    Query8
 )
 
 fun main(args: Array<String>) {
@@ -53,7 +49,7 @@ fun main(args: Array<String>) {
     println("Will begin running projects now.")
     Logger.getLogger("org").level = Level.ERROR
     val conf = SparkConf().setAppName("airport").setMaster("local[1]")
-    val sc = JavaSparkContext(conf)
+    val sc = SQLContext(JavaSparkContext(conf))
     for (project in toExecute) {
         println("Running project ${project.name}.")
         val ms = measureTimeMillis {
